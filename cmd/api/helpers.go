@@ -35,17 +35,12 @@ func (app *application) wrtieJson(w http.ResponseWriter, status int, data envelo
 	if err != nil {
 		return err
 	}
-
 	js = append(js, '\n')
-
-	for key, val := range headers {
-		w.Header()[key] = val
+	for key, value := range headers {
+		w.Header()[key] = value
 	}
-
-	w.Header().Set("content-type", "application/json")
-
+	w.Header().Set("Content-Type", "application/json")
 	w.WriteHeader(status)
-
 	w.Write(js)
 	return nil
 }
